@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Asosiy sahifa - Xurshidbro.uz{% endblock %}
+
+{% block content %}
+    <h2>Yangi maqolalar</h2>
+    
+    {% if posts %}
+        {% for post in posts %}
+            <article class="post">
+                <h3 class="post-title">{{ post.title }}</h3>
+                <div class="post-meta">
+                    Yaratilgan vaqt: {{ post.created_at|date:"d.m.Y H:i" }}
+                </div>
+                <p>{{ post.content|truncatewords:50 }}</p>
+                <a href="{% url 'blog:post_detail' post.slug %}" class="read-more">
+                    Batafsil o'qish
+                </a>
+            </article>
+        {% endfor %}
+        
+        {% if is_paginated %}
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">&laquo; Oldingi</a>
+                {% endif %}
+                
+                <span class="current">
+                    Sahifa {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+                </span>
+                
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Keyingi &raquo;</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% else %}
+        <p>Hozircha maqolalar mavjud emas.</p>
+    {% endif %}
+{% endblock %} 
