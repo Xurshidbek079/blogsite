@@ -1,21 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Xurshidbro.uz{% endblock %}
+{% block title %}Xurshid's Blog{% endblock %}
 
 {% block content %}
-    <div class="section-content">
-        <h1>Salom, men Xurshidbek</h1>
-        <p>Dasturiy ta'minot muhandisiman va bu yerda men o'z tajribam, o'rganayotgan narsalarim va loyihalarim haqida yozaman.</p>
+    <header>
+        <h1>Xurshid's Blog</h1>
+    </header>
+
+    <main>
+        <!-- Profile photo will be shown when you add profile.jpg to static/images/ -->
+        <img src="{% static 'images/profile.jpg' %}" alt="Xurshid's profile photo" class="profile-photo">
         
-        <p>Bu saytda siz quyidagilarni topishingiz mumkin:</p>
-        <ul>
-            <li><strong>Blog</strong> - dasturlash, texnologiyalar va hayot haqidagi maqolalarim</li>
-            <li><strong>Loyihalar</strong> - men ustida ishlayotgan yoki yaratgan loyihalarim</li>
-            <li><strong>Kitoblar</strong> - o'qiyotgan kitoblarim va ularning xulosalari</li>
-            <li><strong>Hozir</strong> - ayni paytda nima bilan shug'ullanayotganim</li>
-            <li><strong>Vositalar</strong> - ishimda foydalanadigan dastur va vositalar</li>
-        </ul>
+        <p>Dasturiy ta'minot muhandisiman va bu yerda o'z tajribam, o'rganayotgan narsalarim va loyihalarim haqida yozaman.</p>
         
-        <p>Aloqada bo'lish uchun <a href="/channel/">Telegram kanalimga</a> obuna bo'ling.</p>
+        <p>Dasturlash dunyosida har kuni yangi narsalar paydo bo'ladi. Men bu o'zgarishlarni kuzatib borish, eng yaxshi amaliyotlarni sinab ko'rish va o'rgangan narsalarimni boshqalar bilan baham ko'rishni yaxshi ko'raman.</p>
+    </main>
+
+    <div class="nav-links">
+        <a href="{% url 'blog:blog_list' %}">Essays</a>
+        <a href="{% url 'blog:about' %}">About</a>
+        <a href="{% url 'blog:projects' %}">Projects</a>
+        <a href="{% url 'blog:books' %}">Books</a>
+        <a href="{% url 'blog:now' %}">Now</a>
+        <a href="{% url 'blog:tools' %}">Tools</a>
+        <a href="https://t.me/xurshidbro_blog">Channel</a>
     </div>
 {% endblock %} 

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Host: https://xurshidbro.uz
+
+# Block access to admin subdomain
+User-agent: *
+Disallow: /
+Host: https://admin.xurshidbro.uz 

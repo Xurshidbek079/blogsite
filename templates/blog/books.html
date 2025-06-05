@@ -1,58 +1,55 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Books - Xurshidbro.uz{% endblock %}
+{% block title %}Books - Xurshid's Blog{% endblock %}
 
 {% block content %}
-    <div class="section-content">
-        <h1>Kitoblar</h1>
-        <p>Hozirda o'qiyotgan va o'qigan kitoblarim va ularning xulosalari:</p>
+    <header>
+        <h1>Books</h1>
+    </header>
+
+    <main>
+        <p>O'qiyotgan va o'qigan kitoblarim haqida qisqacha fikrlar.</p>
         
-        <div class="book-item">
-            <h4>Clean Code - Robert C. Martin</h4>
-            <p><strong>Holat:</strong> O'qilmoqda</p>
-            <p><strong>Xulosa:</strong> Toza kod yozish - bu san'at. Kod faqat kompyuter uchun emas, balki boshqa dasturchilar uchun ham tushunarli bo'lishi kerak. Nomlar, funksiyalar va sinflar o'z maqsadini aniq ifodalashi lozim.</p>
-            <ul>
-                <li>Meaningfull nomlar tanlash muhim</li>
-                <li>Funksiyalar kichik va bitta vazifani bajarishi kerak</li>
-                <li>Kod o'qish oson bo'lishi uchun yozilishi lozim</li>
-            </ul>
+        <h2>Currently Reading</h2>
+        
+        <div class="book-section">
+            <!-- <img src="{% static 'images/clean-code.jpg' %}" alt="Clean Code book cover" class="book-cover"> -->
+            <p><strong>Clean Code</strong> by Robert C. Martin - Toza kod yozish bo'yicha fundamental qoidalar. Har bir dasturchi o'qishi kerak bo'lgan kitob.</p>
         </div>
         
-        <div class="book-item">
-            <h4>The Pragmatic Programmer - David Thomas</h4>
-            <p><strong>Holat:</strong> Tugatilgan</p>
-            <p><strong>Xulosa:</strong> Amaliy dasturchi bo'lish yo'li. Texnologiya o'zgaradi, lekin asosiy tamoyillar doimiy qoladi. Doimiy o'rganish va o'z bilimingizni yangilab turish zarur.</p>
-            <ul>
-                <li>DRY (Don't Repeat Yourself) tamoyili</li>
-                <li>Prototype-driven development</li>
-                <li>Doimiy refactoring va code review</li>
-            </ul>
+        <h2>Recently Finished</h2>
+        
+        <div class="book-section">
+            <!-- <img src="{% static 'images/pragmatic-programmer.jpg' %}" alt="The Pragmatic Programmer book cover" class="book-cover"> -->
+            <p><strong>The Pragmatic Programmer</strong> by David Thomas va Andrew Hunt - Dasturlashda amaliy yondashuvlar va best practices. Juda foydali maslahatlar bilan to'la.</p>
         </div>
         
-        <div class="book-item">
-            <h4>Atomic Habits - James Clear</h4>
-            <p><strong>Holat:</strong> Tugatilgan</p>
-            <p><strong>Xulosa:</strong> Kichik o'zgarishlar katta natijalarga olib keladi. Odatlarni shakllantirish uchun 4 qoida: Make it obvious, attractive, easy, and satisfying.</p>
-            <ul>
-                <li>1% yaxshilanish har kuni katta farq yaratadi</li>
-                <li>Environment dizayni odatlar uchun muhim</li>
-                <li>Identity-based habits eng kuchli</li>
-            </ul>
+        <div class="book-section">
+            <!-- <img src="{% static 'images/python-tricks.jpg' %}" alt="Python Tricks book cover" class="book-cover"> -->
+            <p><strong>Python Tricks</strong> by Dan Bader - Python tilining chuqur imkoniyatlari va idiomatik kod yozish usullari.</p>
         </div>
         
-        <div class="book-item">
-            <h4>System Design Interview - Alex Xu</h4>
-            <p><strong>Holat:</strong> O'qilmoqda</p>
-            <p><strong>Xulosa:</strong> Katta tizimlarni loyihalash bo'yicha amaliy yo'riqnoma. Scalability, reliability va consistency o'rtasidagi muvozanatni topish kerak.</p>
-            <ul>
-                <li>Load balancing va caching strategiyalari</li>
-                <li>Database sharding va replication</li>
-                <li>Microservices vs Monolith arxitektura</li>
-            </ul>
+        <h2>Want to Read</h2>
+        
+        <div class="book-section">
+            <!-- <img src="{% static 'images/system-design.jpg' %}" alt="System Design Interview book cover" class="book-cover"> -->
+            <p><strong>System Design Interview</strong> by Alex Xu - Tizim dizayni bo'yicha intervyu savollariga tayyorgarlik.</p>
         </div>
         
-        <p style="margin-top: 2rem; font-style: italic;">
-            Kitob tavsiyalarim va batafsil xulosalar uchun Telegram kanalimni kuzatib boring!
-        </p>
-    </div>
+        <div class="book-section">
+            <!-- <img src="{% static 'images/designing-data-intensive.jpg' %}" alt="Designing Data-Intensive Applications book cover" class="book-cover"> -->
+            <p><strong>Designing Data-Intensive Applications</strong> by Martin Kleppmann - Zamonaviy ma'lumotlar tizimlarini loyihalash.</p>
+        </div>
+        
+        <h2>Recommendations</h2>
+        
+        <p>Agar dasturlash sohasida bilimingizni oshirishni istasangiz, yuqoridagi kitoblarni tavsiya qilaman. Har birini o'qib chiqqach, bu yerda batafsil sharh yozaman.</p>
+    </main>
+
+    <footer>
+        <div class="back-link">
+            <p><a href="{% url 'blog:home' %}">Back to Home</a></p>
+        </div>
+    </footer>
 {% endblock %} 

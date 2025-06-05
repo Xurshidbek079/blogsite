@@ -1,19 +1,15 @@
 from django.urls import path
-from .views import (
-    HomeView, BlogPostListView, BlogPostDetailView, 
-    AboutView, ChannelView, ProjectsView, BooksView, NowView, ToolsView
-)
+from . import views
 
 app_name = 'blog'
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
-    path('blog/', BlogPostListView.as_view(), name='blog_list'),
-    path('post/<slug:slug>/', BlogPostDetailView.as_view(), name='post_detail'),
-    path('about/', AboutView.as_view(), name='about'),
-    path('channel/', ChannelView.as_view(), name='channel'),
-    path('projects/', ProjectsView.as_view(), name='projects'),
-    path('books/', BooksView.as_view(), name='books'),
-    path('now/', NowView.as_view(), name='now'),
-    path('tools/', ToolsView.as_view(), name='tools'),
+    path('', views.HomePageView.as_view(), name='home'),
+    path('essays/', views.BlogListView.as_view(), name='blog_list'),
+    path('about/', views.AboutPageView.as_view(), name='about'),
+    path('projects/', views.ProjectsPageView.as_view(), name='projects'),
+    path('books/', views.BooksPageView.as_view(), name='books'),
+    path('now/', views.NowPageView.as_view(), name='now'),
+    path('tools/', views.ToolsPageView.as_view(), name='tools'),
+    path('essays/<slug:slug>.html', views.PostDetailView.as_view(), name='post_detail'),
 ] 

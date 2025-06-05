@@ -1,25 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ post.title }} - Xurshidbek's Blog{% endblock %}
+{% block title %}{{ post.title }} - Xurshid's Blog{% endblock %}
 
 {% block content %}
-    <div class="post">
-        <h2>{{ post.title }}</h2>
-        <div class="post-meta">
-            Yaratilgan vaqt: {{ post.created_at|date:"d.m.Y H:i" }}
-            {% if post.updated_at != post.created_at %}
-                <br>
-                Yangilangan vaqt: {{ post.updated_at|date:"d.m.Y H:i" }}
-            {% endif %}
+    <header>
+        <h1>{{ post.title }}</h1>
+        <p class="meta">{{ post.created_at|date:"F Y" }}</p>
+    </header>
+
+    <main>
+        {{ post.content|linebreaks }}
+    </main>
+
+    <footer>
+        <div class="back-link">
+            <p><a href="{% url 'blog:blog_list' %}">Back to Essays</a></p>
         </div>
-        <div class="post-content">
-            {{ post.content|linebreaks }}
-        </div>
-    </div>
-    
-    <div style="margin-top: 2rem;">
-        <a href="{% url 'blog:home' %}" class="read-more">
-            ← Asosiy sahifaga qaytish
-        </a>
-    </div>
+    </footer>
 {% endblock %} 

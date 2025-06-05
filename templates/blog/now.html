@@ -1,55 +1,45 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Now - Xurshidbro.uz{% endblock %}
+{% block title %}Now - Xurshid's Blog{% endblock %}
 
 {% block content %}
-    <div class="section-content">
-        <h1>Hozir nima bilan band</h1>
-        <p><em>Oxirgi yangilanish: Dekabr 2024</em></p>
+    <header>
+        <h1>Now</h1>
+        <p class="meta">January 2025</p>
+    </header>
+
+    <main>
+        <!-- <img src="{% static 'images/current-workspace.jpg' %}" alt="Current workspace" class="page-photo"> -->
         
-        <p>Ayni paytda men quyidagi ishlar bilan band:</p>
+        <p>Hozirda nima bilan shug'ullanayotganim haqida.</p>
         
-        <h3>💼 Ish loyihalari</h3>
-        <ul>
-            <li>E-commerce platformasini Django bilan qayta yozish</li>
-            <li>Microservices arxitekturasiga o'tish rejasi</li>
-            <li>API performance optimization</li>
-            <li>Docker va Kubernetes bilan CI/CD pipeline sozlash</li>
-        </ul>
+        <h2>Learning</h2>
         
-        <h3>📚 O'rganayotgan texnologiyalar</h3>
-        <ul>
-            <li>Go programming language (backend development uchun)</li>
-            <li>AWS cloud services (certification tayyorligi)</li>
-            <li>GraphQL va Apollo client</li>
-            <li>Redis va caching strategiyalari</li>
-        </ul>
+        <p>Django va Python ekotizimini chuqurroq o'rganmoqdaman. Ayniqsa database optimization va caching strategiyalariga e'tibor bermoqdaman.</p>
         
-        <h3>🚀 Shaxsiy loyihalar</h3>
-        <ul>
-            <li>Blog platformasini to'liq qayta loyihalash</li>
-            <li>Task management mobil ilovasini yaratish</li>
-            <li>Open source kutubxona yaratish (form validation)</li>
-            <li>YouTube kanal uchun content tayyorlash</li>
-        </ul>
+        <p>System design kontseptsiyalarini o'rganib, katta tizimlarni qanday loyihalash kerakligini tushunishga harakat qilmoqdaman.</p>
         
-        <h3>📖 O'qiyotgan kitoblar</h3>
-        <ul>
-            <li>"Clean Code" - Robert C. Martin</li>
-            <li>"System Design Interview" - Alex Xu</li>
-            <li>"The Go Programming Language" - Alan Donovan</li>
-        </ul>
+        <h2>Building</h2>
         
-        <h3>🎯 2024 maqsadlari</h3>
-        <ul>
-            <li>AWS Solutions Architect sertifikat olish</li>
-            <li>3 ta to'liq loyihani tugallash va launch qilish</li>
-            <li>Haftasiga 2 ta blog post yozish</li>
-            <li>Telegram kanalida 1000+ obunachilar</li>
-        </ul>
+        <p>Bu personal blogni takomillashtirmoqdaman. Maqsad - sodda, tez va content-focused blog yaratish.</p>
         
-        <p style="margin-top: 2rem; padding: 1rem; background-color: #f0f8ff; border-left: 4px solid #0066cc;">
-            <strong>Eslatma:</strong> Bu sahifa muntazam yangilanadi. Mening hozirgi faoliyatim haqida eng so'nggi ma'lumotlar uchun Telegram kanalimni kuzatib boring!
-        </p>
-    </div>
+        <p>Bir nechta kichik API loyihalar ustida ishlamoqdaman, ularni GitHub'da ochiq manbali qilish rejalari bor.</p>
+        
+        <h2>Reading</h2>
+        
+        <p>"Clean Code" kitobini o'qib chiqmoqdaman. Har hafta bir necha bobini o'rganib, amaliyotda qo'llashga harakat qilaman.</p>
+        
+        <h2>Goals</h2>
+        
+        <p>Keyingi oy ichida kamida 3 ta texnik maqola yozishni rejalashtirmoqdaman. PostgreSQL performance tuning va Django best practices mavzularida.</p>
+        
+        <p>Open source loyihalarga contribute qilishni boshlamoqchiman. Birinchi qadam sifatida Django ecosystem'dagi kichik bug fix'lar.</p>
+    </main>
+
+    <footer>
+        <div class="back-link">
+            <p><a href="{% url 'blog:home' %}">Back to Home</a></p>
+        </div>
+    </footer>
 {% endblock %} 

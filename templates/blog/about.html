@@ -1,33 +1,28 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}About - Xurshidbro.uz{% endblock %}
+{% block title %}About - Xurshid's Blog{% endblock %}
 
 {% block content %}
-    <div class="section-content">
-        <h1>Men haqimda</h1>
+    <header>
+        <h1>About</h1>
+    </header>
+
+    <main>
+        <!-- <img src="{% static 'images/about-photo.jpg' %}" alt="Xurshid working" class="page-photo"> -->
         
-        <p>Salom! Men Xurshidbek, dasturiy ta'minot muhandisiman.</p>
+        <p>Men Xurshidbek, dasturiy ta'minot muhandisiman va texnologiya sohasida faoliyat yuritaman.</p>
         
-        <p>Men web dasturlash, mobil ilovalar yaratish va zamonaviy texnologiyalar bilan ishlashni yaxshi ko'raman. 
-        Mening maqsadim - sifatli va foydali dasturiy mahsulotlar yaratish orqali odamlarning hayotini osonlashtirish.</p>
+        <p>Backend dasturlash, ma'lumotlar tahlili va veb-dasturlash sohasida tajribaga egaman. Asosan Python, Django, PostgreSQL va boshqa zamonaviy texnologiyalar bilan ishlayman.</p>
         
-        <h3>Bilimlarim:</h3>
-        <ul>
-            <li>Web dasturlash (Frontend va Backend)</li>
-            <li>Mobil ilovalar yaratish</li>
-            <li>Ma'lumotlar bazasi bilan ishlash</li>
-            <li>Zamonaviy dasturlash tillari va ramkalar</li>
-            <li>DevOps va cloud texnologiyalar</li>
-        </ul>
+        <p>Bu blogda dasturlash, texnologiyalar va shaxsiy rivojlanish mavzularida o'z tajribalarimi baham ko'raman. Har bir maqola o'rgangan narsalarimni yoki qiziqarli loyihalarimni boshqalar bilan ulashish maqsadida yoziladi.</p>
         
-        <h3>Qiziqishlarim:</h3>
-        <ul>
-            <li>Yangi texnologiyalarni o'rganish</li>
-            <li>Open source loyihalarga hissa qo'shish</li>
-            <li>Kitob o'qish va bilim ulashish</li>
-            <li>IT jamiyati bilan aloqada bo'lish</li>
-        </ul>
-        
-        <p>Agar birgalikda ishlashni istasangiz yoki savollaringiz bo'lsa, men bilan bog'laning!</p>
-    </div>
+        <p>Agar savol yoki takliflaringiz bo'lsa, <a href="https://t.me/xurshidbro_blog">Telegram kanalim</a> orqali bog'lanishingiz mumkin.</p>
+    </main>
+
+    <footer>
+        <div class="back-link">
+            <p><a href="{% url 'blog:home' %}">Back to Home</a></p>
+        </div>
+    </footer>
 {% endblock %} 

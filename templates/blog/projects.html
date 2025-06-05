@@ -1,50 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Projects - Xurshidbro.uz{% endblock %}
+{% block title %}Projects - Xurshid's Blog{% endblock %}
 
 {% block content %}
-    <div class="section-content">
-        <h1>Loyihalar</h1>
-        <p>Men ustida ishlayotgan va yaratgan loyihalarim:</p>
+    <header>
+        <h1>Projects</h1>
+    </header>
+
+    <main>
+        <p>Bu yerda men ustida ishlagan yoki hozir ishlab chiqayotgan loyihalarim haqida ma'lumot bering.</p>
         
-        <div class="project-item">
-            <h4>Xurshidbro.uz - Shaxsiy Blog</h4>
-            <ul>
-                <li>Django framework bilan yaratilgan blog platformasi</li>
-                <li>O'zbek tilidagi maqolalar va mulohazalar uchun</li>
-                <li>Minimalist dizayn va tez yuklanuvchi sahifalar</li>
-            </ul>
+        <h2>Web Applications</h2>
+        
+        <!-- <img src="{% static 'images/personal-blog.jpg' %}" alt="Personal Blog Screenshot" class="project-photo"> -->
+        <p><strong>Personal Blog</strong> - Django asosida yaratilgan shaxsiy blog. Ma'lumotlar bazasi PostgreSQL, frontend minimalistik dizayn bilan.</p>
+        
+        <!-- <img src="{% static 'images/task-management.jpg' %}" alt="Task Management System Screenshot" class="project-photo"> -->
+        <p><strong>Task Management System</strong> - Jamoaviy ishlar uchun vazifalarni boshqarish tizimi. Python va Django REST Framework ishlatilgan.</p>
+        
+        <h2>Learning Projects</h2>
+        
+        <!-- <img src="{% static 'images/algorithms.jpg' %}" alt="Algorithm Implementations" class="project-photo"> -->
+        <p><strong>Algorithm Implementations</strong> - Turli algoritmlarning Python tilida implementatsiyasi. Data structures va algorithms o'rganish maqsadida.</p>
+        
+        <!-- <img src="{% static 'images/api-integrations.jpg' %}" alt="API Integration Examples" class="project-photo"> -->
+        <p><strong>API Integrations</strong> - Turli xil API'lar bilan ishlash bo'yicha eksperimentlar va namuna kodlar.</p>
+        
+        <h2>Future Plans</h2>
+        
+        <p>Kelgusida machine learning va data science sohasida loyihalar ustida ishlashni rejalashtirmoqdaman.</p>
+    </main>
+
+    <footer>
+        <div class="back-link">
+            <p><a href="{% url 'blog:home' %}">Back to Home</a></p>
         </div>
-        
-        <div class="project-item">
-            <h4>E-commerce Platform</h4>
-            <ul>
-                <li>React.js va Node.js texnologiyalari bilan yaratilgan</li>
-                <li>To'liq funktsional onlayn do'kon tizimi</li>
-                <li>To'lov tizimlari va inventar boshqaruvi</li>
-            </ul>
-        </div>
-        
-        <div class="project-item">
-            <h4>Task Management App</h4>
-            <ul>
-                <li>Flutter bilan cross-platform mobil ilova</li>
-                <li>Vazifalarni rejalashtirish va kuzatish</li>
-                <li>Team collaboration va real-time yangilanishlar</li>
-            </ul>
-        </div>
-        
-        <div class="project-item">
-            <h4>API Documentation Tool</h4>
-            <ul>
-                <li>Automatik API dokumentatsiya yaratuvchi vosita</li>
-                <li>OpenAPI standartiga muvofiq</li>
-                <li>Interactive testing va code generation</li>
-            </ul>
-        </div>
-        
-        <p style="margin-top: 2rem; font-style: italic;">
-            Ko'proq loyihalar ustida ishlamoqdaman. Yangilanishlar uchun kanalga obuna bo'ling!
-        </p>
-    </div>
+    </footer>
 {% endblock %} 

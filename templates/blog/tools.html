@@ -1,84 +1,56 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Tools - Xurshidbro.uz{% endblock %}
+{% block title %}Tools - Xurshid's Blog{% endblock %}
 
 {% block content %}
-    <div class="section-content">
-        <h1>Ishimda foydalanadigan vositalar</h1>
-        <p>Dasturlash va loyiha boshqaruvida foydalanadigan asosiy vositalarim:</p>
+    <header>
+        <h1>Tools</h1>
+    </header>
+
+    <main>
+        <!-- <img src="{% static 'images/development-setup.jpg' %}" alt="Development setup" class="page-photo"> -->
         
-        <div class="tool-item">
-            <h4>💻 Development Environment</h4>
-            <ul>
-                <li><strong>VS Code</strong> - asosiy kod muharriri, ko'plab extension bilan</li>
-                <li><strong>PyCharm</strong> - Python loyihalari uchun</li>
-                <li><strong>Git</strong> - version control system</li>
-                <li><strong>GitHub</strong> - kod saqlash va hamkorlik</li>
-            </ul>
+        <p>Dasturlashda foydalanadigan vositalarim va ularni tanlash sabablari.</p>
+        
+        <h2>Development</h2>
+        
+        <p><strong>VS Code</strong> - Asosiy code editor. Python extension, Git integration va debugging imkoniyatlari juda yaxshi.</p>
+        
+        <p><strong>PyCharm</strong> - Katta Django loyihalar uchun. Intelligent code completion va refactoring tools ajoyib.</p>
+        
+        <p><strong>Git</strong> - Version control uchun. GitHub va GitLab bilan integratsiya.</p>
+        
+        <h2>Backend</h2>
+        
+        <p><strong>Python</strong> - Asosiy dasturlash tili. Django va FastAPI framework'lari bilan.</p>
+        
+        <p><strong>PostgreSQL</strong> - Ma'lumotlar bazasi. Reliability va performance uchun.</p>
+        
+        <p><strong>Redis</strong> - Caching va session storage uchun.</p>
+        
+        <h2>Deployment</h2>
+        
+        <p><strong>Docker</strong> - Containerization uchun. Local development va production consistency.</p>
+        
+        <p><strong>DigitalOcean</strong> - VPS hosting. Sodda va ishonchli.</p>
+        
+        <p><strong>Gunicorn</strong> - Python WSGI HTTP server. Production deployment uchun.</p>
+        
+        <h2>Productivity</h2>
+        
+        <p><strong>Notion</strong> - Note-taking va project planning. Knowledge base sifatida.</p>
+        
+        <p><strong>Postman</strong> - API testing va documentation uchun.</p>
+        
+        <p><strong>Termius</strong> - SSH client. Server management uchun qulay.</p>
+        
+        <p>Bu list vaqt o'tishi bilan o'zgaradi. Yangi vositalarni sinab ko'rish va eng samaralisini tanlash muhim.</p>
+    </main>
+
+    <footer>
+        <div class="back-link">
+            <p><a href="{% url 'blog:home' %}">Back to Home</a></p>
         </div>
-        
-        <div class="tool-item">
-            <h4>🚀 Programming Languages & Frameworks</h4>
-            <ul>
-                <li><strong>Python</strong> - Django, FastAPI, Flask</li>
-                <li><strong>JavaScript</strong> - React.js, Node.js, Vue.js</li>
-                <li><strong>TypeScript</strong> - type-safe JavaScript development</li>
-                <li><strong>Dart</strong> - Flutter mobile development</li>
-            </ul>
-        </div>
-        
-        <div class="tool-item">
-            <h4>🗄️ Databases & Storage</h4>
-            <ul>
-                <li><strong>PostgreSQL</strong> - asosiy relational database</li>
-                <li><strong>Redis</strong> - caching va session storage</li>
-                <li><strong>MongoDB</strong> - NoSQL database</li>
-                <li><strong>SQLite</strong> - development va test uchun</li>
-            </ul>
-        </div>
-        
-        <div class="tool-item">
-            <h4>☁️ Cloud & DevOps</h4>
-            <ul>
-                <li><strong>AWS</strong> - EC2, S3, RDS, Lambda</li>
-                <li><strong>Docker</strong> - containerization</li>
-                <li><strong>Nginx</strong> - web server va reverse proxy</li>
-                <li><strong>GitHub Actions</strong> - CI/CD pipeline</li>
-            </ul>
-        </div>
-        
-        <div class="tool-item">
-            <h4>🎨 Design & UI/UX</h4>
-            <ul>
-                <li><strong>Figma</strong> - UI/UX dizayn va prototyping</li>
-                <li><strong>Tailwind CSS</strong> - utility-first CSS framework</li>
-                <li><strong>Material UI</strong> - React component library</li>
-                <li><strong>Canva</strong> - grafik dizayn va content yaratish</li>
-            </ul>
-        </div>
-        
-        <div class="tool-item">
-            <h4>📊 Productivity & Management</h4>
-            <ul>
-                <li><strong>Notion</strong> - loyiha rejalashtirish va hujjatlash</li>
-                <li><strong>Trello</strong> - task management</li>
-                <li><strong>Slack</strong> - jamoa bilan muloqot</li>
-                <li><strong>Postman</strong> - API testing va dokumentatsiya</li>
-            </ul>
-        </div>
-        
-        <div class="tool-item">
-            <h4>🔧 Utilities & Extensions</h4>
-            <ul>
-                <li><strong>Oh My Zsh</strong> - terminal configuration</li>
-                <li><strong>Prettier</strong> - kod formatlash</li>
-                <li><strong>ESLint</strong> - JavaScript linting</li>
-                <li><strong>TablePlus</strong> - database GUI</li>
-            </ul>
-        </div>
-        
-        <p style="margin-top: 2rem; font-style: italic;">
-            Yangi vositalarni doimiy sinovdan o'tkazaman. Eng yaxshi topilmalar haqida blog va kanalda yozaman!
-        </p>
-    </div>
+    </footer>
 {% endblock %} 
