@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Books - Xurshidbro.uz{% endblock %}
+
+{% block content %}
+    <div class="section-content">
+        <h1>Kitoblar</h1>
+        <p>Hozirda o'qiyotgan va o'qigan kitoblarim va ularning xulosalari:</p>
+        
+        <div class="book-item">
+            <h4>Clean Code - Robert C. Martin</h4>
+            <p><strong>Holat:</strong> O'qilmoqda</p>
+            <p><strong>Xulosa:</strong> Toza kod yozish - bu san'at. Kod faqat kompyuter uchun emas, balki boshqa dasturchilar uchun ham tushunarli bo'lishi kerak. Nomlar, funksiyalar va sinflar o'z maqsadini aniq ifodalashi lozim.</p>
+            <ul>
+                <li>Meaningfull nomlar tanlash muhim</li>
+                <li>Funksiyalar kichik va bitta vazifani bajarishi kerak</li>
+                <li>Kod o'qish oson bo'lishi uchun yozilishi lozim</li>
+            </ul>
+        </div>
+        
+        <div class="book-item">
+            <h4>The Pragmatic Programmer - David Thomas</h4>
+            <p><strong>Holat:</strong> Tugatilgan</p>
+            <p><strong>Xulosa:</strong> Amaliy dasturchi bo'lish yo'li. Texnologiya o'zgaradi, lekin asosiy tamoyillar doimiy qoladi. Doimiy o'rganish va o'z bilimingizni yangilab turish zarur.</p>
+            <ul>
+                <li>DRY (Don't Repeat Yourself) tamoyili</li>
+                <li>Prototype-driven development</li>
+                <li>Doimiy refactoring va code review</li>
+            </ul>
+        </div>
+        
+        <div class="book-item">
+            <h4>Atomic Habits - James Clear</h4>
+            <p><strong>Holat:</strong> Tugatilgan</p>
+            <p><strong>Xulosa:</strong> Kichik o'zgarishlar katta natijalarga olib keladi. Odatlarni shakllantirish uchun 4 qoida: Make it obvious, attractive, easy, and satisfying.</p>
+            <ul>
+                <li>1% yaxshilanish har kuni katta farq yaratadi</li>
+                <li>Environment dizayni odatlar uchun muhim</li>
+                <li>Identity-based habits eng kuchli</li>
+            </ul>
+        </div>
+        
+        <div class="book-item">
+            <h4>System Design Interview - Alex Xu</h4>
+            <p><strong>Holat:</strong> O'qilmoqda</p>
+            <p><strong>Xulosa:</strong> Katta tizimlarni loyihalash bo'yicha amaliy yo'riqnoma. Scalability, reliability va consistency o'rtasidagi muvozanatni topish kerak.</p>
+            <ul>
+                <li>Load balancing va caching strategiyalari</li>
+                <li>Database sharding va replication</li>
+                <li>Microservices vs Monolith arxitektura</li>
+            </ul>
+        </div>
+        
+        <p style="margin-top: 2rem; font-style: italic;">
+            Kitob tavsiyalarim va batafsil xulosalar uchun Telegram kanalimni kuzatib boring!
+        </p>
+    </div>
+{% endblock %} 
