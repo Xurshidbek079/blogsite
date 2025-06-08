@@ -102,6 +102,10 @@ if DEBUG:
 else:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Media files (uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Enhanced Security Settings for Production
