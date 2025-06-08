@@ -1,0 +1,13 @@
+Tool Logos Directory
+
+Place tool and technology logos here:
+- vscode.png
+- python.png
+- django.png
+- postgresql.png
+- git.png
+- nginx.png
+- ubuntu.png
+
+Logo formats: PNG or SVG preferred
+Size: 64x64px or 128x128px for consistency 

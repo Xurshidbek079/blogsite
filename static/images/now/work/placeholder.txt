@@ -1,0 +1,7 @@
+Current Work Images
+
+Place images related to your current work projects:
+- current-project-screenshot.jpg
+- work-in-progress.jpg
+- team-collaboration.jpg
+- code-review.jpg 
