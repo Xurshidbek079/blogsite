@@ -7,11 +7,11 @@ from .models import (
 
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'created_at', 'is_published']
-    list_filter = ['is_published', 'created_at']
+    list_display = ['title', 'written_date', 'is_published']
+    list_filter = ['is_published', 'written_date']
     search_fields = ['title', 'content']
     prepopulated_fields = {'slug': ('title',)}
-    date_hierarchy = 'created_at'
+    date_hierarchy = 'written_date'
 
 
 @admin.register(AboutSection)

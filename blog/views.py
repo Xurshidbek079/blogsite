@@ -17,7 +17,7 @@ class BlogListView(ListView):
     template_name = 'blog/blog_list.html'
     context_object_name = 'posts'
     paginate_by = 5
-    ordering = ['-created_at']
+    ordering = ['-written_date']
     
     def get_queryset(self):
         return BlogPost.objects.filter(is_published=True)

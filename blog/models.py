@@ -1,17 +1,17 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
 
 
 class BlogPost(models.Model):
     title = models.CharField('Title', max_length=200)
     slug = models.SlugField('URL slug', unique=True)
     content = models.TextField('Content')
-    created_at = models.DateTimeField('Created at', auto_now_add=True)
-    updated_at = models.DateTimeField('Updated at', auto_now=True)
+    written_date = models.DateField('Written date', default=date.today, help_text='Date when the essay was written')
     is_published = models.BooleanField('Published', default=True)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['-written_date']
         verbose_name = 'Blog Post'
         verbose_name_plural = 'Blog Posts'
 
