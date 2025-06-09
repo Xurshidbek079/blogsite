@@ -12,7 +12,7 @@
     <main>
         <!-- <img src="{% static 'images/current-workspace.jpg' %}" alt="Current workspace" class="page-photo"> -->
         
-        <p>Hozirda nima bilan shug'ullanayotganim haqida.</p>
+        <p>What I'm currently working on and focusing on.</p>
         
         {% if active_activities %}
             {% regroup active_activities by category as activities_by_category %}
@@ -59,18 +59,18 @@
         {% else %}
             <!-- Fallback content if no activities are added -->
             <h2>Learning</h2>
-            <p>Django va Python ekotizimini chuqurroq o'rganmoqdaman. Ayniqsa database optimization va caching strategiyalariga e'tibor bermoqdaman.</p>
+            <p>I'm diving deeper into Django and the Python ecosystem. Particularly focusing on database optimization and caching strategies.</p>
             
             <h2>Building</h2>
-            <p>Bu personal blogni takomillashtirmoqdaman. Maqsad - sodda, tez va content-focused blog yaratish.</p>
+            <p>I'm improving this personal blog. The goal is to create a simple, fast, and content-focused blog.</p>
             
             <h2>Reading</h2>
-            <p>"Clean Code" kitobini o'qib chiqmoqdaman. Har hafta bir necha bobini o'rganib, amaliyotda qo'llashga harakat qilaman.</p>
+            <p>I'm reading "Clean Code" book. I try to learn a few chapters each week and apply them in practice.</p>
             
             <h2>Goals</h2>
-            <p>Keyingi oy ichida kamida 3 ta texnik maqola yozishni rejalashtirmoqdaman.</p>
+            <p>I plan to write at least 3 technical articles in the next month.</p>
             
-            <p><em>To see dynamic content here, add activities in the admin panel under "Hozirgi Faoliyatlar".</em></p>
+            <p><em>To see dynamic content here, add activities in the admin panel under "Current Activities".</em></p>
         {% endif %}
     </main>
 

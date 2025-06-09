@@ -9,5 +9,5 @@ class AdminSubdomainMiddleware:
         # Allow admin access from admin subdomain and localhost for development
         allowed_admin_hosts = ['admin.xurshidbro.uz', 'localhost', '127.0.0.1']
         if request.path.startswith('/admin/') and host not in allowed_admin_hosts:
-            return HttpResponseNotFound('<h1>Sahifa topilmadi</h1>')
+            return HttpResponseNotFound('<h1>Page not found</h1>')
         return self.get_response(request) 

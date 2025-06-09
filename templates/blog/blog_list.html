@@ -13,13 +13,13 @@
                 {% for post in posts %}
                     <div class="essay-item">
                         <h3><a href="{% url 'blog:post_detail' post.slug %}">{{ post.title }}</a></h3>
-                        <p class="meta">{{ post.created_at|date:"F d, Y" }}</p>
+                        <p class="meta">{{ post.created_at|date:"d.m.Y" }}</p>
                         <p>{{ post.content|truncatewords:40 }}</p>
                     </div>
                 {% endfor %}
             </div>
         {% else %}
-            <p>Hozircha maqolalar mavjud emas.</p>
+            <p>No articles available yet.</p>
         {% endif %}
     </main>
 

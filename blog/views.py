@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, TemplateView
 from django.core.paginator import Paginator
+from itertools import groupby
 from .models import (
     BlogPost, AboutSection, Project, Book, 
     NowActivity, Tool, ToolCategory
@@ -78,6 +79,10 @@ class ToolsPageView(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # Get tools ordered by category and then by order within category
+        all_tools = Tool.objects.select_related('category').order_by('category__order', 'order')
+        # Group tools by category
+        context['tools_by_category'] = groupby(all_tools, key=lambda tool: tool.category)
         context['categories'] = ToolCategory.objects.all()
         context['favorite_tools'] = Tool.objects.filter(is_favorite=True)
         context['currently_using'] = Tool.objects.filter(is_currently_using=True)

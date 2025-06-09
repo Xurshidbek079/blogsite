@@ -26,8 +26,8 @@ class AboutSectionAdmin(admin.ModelAdmin):
 @admin.register(ProjectCategory)
 class ProjectCategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
-    prepopulated_fields = {'slug': ('name',)}
     search_fields = ['name', 'description']
+    prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Project)
@@ -39,16 +39,16 @@ class ProjectAdmin(admin.ModelAdmin):
     list_editable = ['order', 'is_featured', 'status']
     date_hierarchy = 'created_at'
     fieldsets = (
-        ('Asosiy Ma\'lumotlar', {
+        ('Basic Information', {
             'fields': ('title', 'slug', 'category', 'description')
         }),
-        ('Media va Havolalar', {
+        ('Media and Links', {
             'fields': ('image', 'demo_url', 'github_url')
         }),
-        ('Texnik Ma\'lumotlar', {
+        ('Technical Details', {
             'fields': ('technologies', 'status', 'start_date', 'end_date')
         }),
-        ('Ko\'rsatish Sozlamalari', {
+        ('Display Settings', {
             'fields': ('order', 'is_featured')
         }),
     )
@@ -62,16 +62,16 @@ class BookAdmin(admin.ModelAdmin):
     list_editable = ['order', 'is_recommended', 'rating']
     date_hierarchy = 'created_at'
     fieldsets = (
-        ('Kitob Ma\'lumotlari', {
+        ('Book Information', {
             'fields': ('title', 'author', 'cover_image', 'pages', 'isbn')
         }),
-        ('O\'qish Holati', {
+        ('Reading Status', {
             'fields': ('status', 'rating', 'start_date', 'finish_date')
         }),
-        ('Sharh va Xulosalar', {
+        ('Review and Takeaways', {
             'fields': ('review', 'key_takeaways')
         }),
-        ('Qo\'shimcha', {
+        ('Additional', {
             'fields': ('buy_url', 'order', 'is_recommended')
         }),
     )
@@ -92,16 +92,16 @@ class NowActivityAdmin(admin.ModelAdmin):
     list_editable = ['order', 'is_active', 'progress']
     date_hierarchy = 'start_date'
     fieldsets = (
-        ('Asosiy Ma\'lumotlar', {
+        ('Basic Information', {
             'fields': ('title', 'category', 'description')
         }),
-        ('Media va Havola', {
+        ('Media and Link', {
             'fields': ('image', 'url')
         }),
-        ('Vaqt va Holat', {
+        ('Time and Status', {
             'fields': ('start_date', 'end_date', 'is_active', 'progress')
         }),
-        ('Ko\'rsatish', {
+        ('Display', {
             'fields': ('order',)
         }),
     )
@@ -112,7 +112,6 @@ class ToolCategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'icon', 'order']
     list_editable = ['order', 'icon']
     ordering = ['order']
-    search_fields = ['name', 'description']
 
 
 @admin.register(Tool)
@@ -122,19 +121,19 @@ class ToolAdmin(admin.ModelAdmin):
     search_fields = ['name', 'description', 'notes']
     list_editable = ['order', 'is_favorite', 'is_currently_using']
     fieldsets = (
-        ('Asosiy Ma\'lumotlar', {
+        ('Basic Information', {
             'fields': ('name', 'category', 'description')
         }),
-        ('Media va Havola', {
+        ('Media and Link', {
             'fields': ('logo', 'website_url')
         }),
-        ('Tajriba', {
+        ('Experience', {
             'fields': ('proficiency', 'years_experience')
         }),
-        ('Holat', {
+        ('Status', {
             'fields': ('is_favorite', 'is_currently_using')
         }),
-        ('Qo\'shimcha', {
+        ('Additional', {
             'fields': ('notes', 'order')
         }),
     )
@@ -143,4 +142,4 @@ class ToolAdmin(admin.ModelAdmin):
 # Customize admin site header
 admin.site.site_header = "Xurshid's Blog Admin"
 admin.site.site_title = "Blog Admin"
-admin.site.index_title = "Blog Boshqaruv Paneli" 
+admin.site.index_title = "Blog Admin Panel" 
