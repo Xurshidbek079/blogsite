@@ -6,6 +6,8 @@ class AdminSubdomainMiddleware:
 
     def __call__(self, request):
         host = request.get_host().split(':')[0]
-        if request.path.startswith('/admin/') and host != 'admin.xurshidbro.uz':
+        # Allow admin access from admin subdomain and localhost for development
+        allowed_admin_hosts = ['admin.xurshidbro.uz', 'localhost', '127.0.0.1']
+        if request.path.startswith('/admin/') and host not in allowed_admin_hosts:
             return HttpResponseNotFound('<h1>Sahifa topilmadi</h1>')
         return self.get_response(request) 

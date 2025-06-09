@@ -9,42 +9,127 @@
     </header>
 
     <main>
-        <p>O'qiyotgan va o'qigan kitoblarim haqida qisqacha fikrlar.</p>
-        
-        <h2>Currently Reading</h2>
-        
-        <div class="book-section">
-            <!-- <img src="{% static 'images/clean-code.jpg' %}" alt="Clean Code book cover" class="book-cover"> -->
-            <p><strong>Clean Code</strong> by Robert C. Martin - Toza kod yozish bo'yicha fundamental qoidalar. Har bir dasturchi o'qishi kerak bo'lgan kitob.</p>
-        </div>
-        
-        <h2>Recently Finished</h2>
-        
-        <div class="book-section">
-            <!-- <img src="{% static 'images/pragmatic-programmer.jpg' %}" alt="The Pragmatic Programmer book cover" class="book-cover"> -->
-            <p><strong>The Pragmatic Programmer</strong> by David Thomas va Andrew Hunt - Dasturlashda amaliy yondashuvlar va best practices. Juda foydali maslahatlar bilan to'la.</p>
-        </div>
-        
-        <div class="book-section">
-            <!-- <img src="{% static 'images/python-tricks.jpg' %}" alt="Python Tricks book cover" class="book-cover"> -->
-            <p><strong>Python Tricks</strong> by Dan Bader - Python tilining chuqur imkoniyatlari va idiomatik kod yozish usullari.</p>
-        </div>
-        
-        <h2>Want to Read</h2>
-        
-        <div class="book-section">
-            <!-- <img src="{% static 'images/system-design.jpg' %}" alt="System Design Interview book cover" class="book-cover"> -->
-            <p><strong>System Design Interview</strong> by Alex Xu - Tizim dizayni bo'yicha intervyu savollariga tayyorgarlik.</p>
-        </div>
-        
-        <div class="book-section">
-            <!-- <img src="{% static 'images/designing-data-intensive.jpg' %}" alt="Designing Data-Intensive Applications book cover" class="book-cover"> -->
-            <p><strong>Designing Data-Intensive Applications</strong> by Martin Kleppmann - Zamonaviy ma'lumotlar tizimlarini loyihalash.</p>
-        </div>
-        
-        <h2>Recommendations</h2>
-        
-        <p>Agar dasturlash sohasida bilimingizni oshirishni istasangiz, yuqoridagi kitoblarni tavsiya qilaman. Har birini o'qib chiqqach, bu yerda batafsil sharh yozaman.</p>
+        {% if currently_reading %}
+            <h2>Currently Reading</h2>
+            {% for book in currently_reading %}
+                <div class="book-section">
+                    {% if book.cover_image %}
+                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-cover">
+                    {% endif %}
+                    
+                    <div class="book-content">
+                        <h3>{{ book.title }}</h3>
+                        <p><strong>Author:</strong> {{ book.author }}</p>
+                        
+                        {% if book.pages %}
+                            <p><strong>Pages:</strong> {{ book.pages }}</p>
+                        {% endif %}
+                        
+                        {% if book.start_date %}
+                            <p><strong>Started:</strong> {{ book.start_date|date:"F d, Y" }}</p>
+                        {% endif %}
+                        
+                        {% if book.review %}
+                            <div class="book-review">
+                                <p><strong>Notes so far:</strong></p>
+                                {{ book.review|linebreaks }}
+                            </div>
+                        {% endif %}
+                        
+                        {% if book.buy_url %}
+                            <p><a href="{{ book.buy_url }}" target="_blank">Get this book</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if completed_books %}
+            <h2>Completed Books</h2>
+            {% for book in completed_books %}
+                <div class="book-section">
+                    {% if book.cover_image %}
+                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-cover">
+                    {% endif %}
+                    
+                    <div class="book-content">
+                        <h3>{{ book.title }}</h3>
+                        <p><strong>Author:</strong> {{ book.author }}</p>
+                        
+                        {% if book.rating %}
+                            <p><strong>Rating:</strong> 
+                                {% for i in "12345" %}
+                                    {% if forloop.counter <= book.rating %}★{% else %}☆{% endif %}
+                                {% endfor %}
+                                ({{ book.rating }}/5)
+                            </p>
+                        {% endif %}
+                        
+                        {% if book.finish_date %}
+                            <p><strong>Completed:</strong> {{ book.finish_date|date:"F d, Y" }}</p>
+                        {% endif %}
+                        
+                        {% if book.review %}
+                            <div class="book-review">
+                                <p><strong>Review:</strong></p>
+                                {{ book.review|linebreaks }}
+                            </div>
+                        {% endif %}
+                        
+                        {% if book.key_takeaways %}
+                            <div class="book-takeaways">
+                                <p><strong>Key Takeaways:</strong></p>
+                                {{ book.key_takeaways|linebreaks }}
+                            </div>
+                        {% endif %}
+                        
+                        {% if book.is_recommended %}
+                            <p class="recommendation"><strong>⭐ Recommended!</strong></p>
+                        {% endif %}
+                        
+                        {% if book.buy_url %}
+                            <p><a href="{{ book.buy_url }}" target="_blank">Get this book</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if want_to_read %}
+            <h2>Want to Read</h2>
+            {% for book in want_to_read %}
+                <div class="book-section">
+                    {% if book.cover_image %}
+                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-cover">
+                    {% endif %}
+                    
+                    <div class="book-content">
+                        <h3>{{ book.title }}</h3>
+                        <p><strong>Author:</strong> {{ book.author }}</p>
+                        
+                        {% if book.pages %}
+                            <p><strong>Pages:</strong> {{ book.pages }}</p>
+                        {% endif %}
+                        
+                        {% if book.review %}
+                            <div class="book-preview">
+                                <p><strong>Why I want to read this:</strong></p>
+                                {{ book.review|linebreaks }}
+                            </div>
+                        {% endif %}
+                        
+                        {% if book.buy_url %}
+                            <p><a href="{{ book.buy_url }}" target="_blank">Get this book</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if not currently_reading and not completed_books and not want_to_read %}
+            <!-- Fallback content -->
+            <p>No books have been added yet. I'm always reading something interesting - check back soon for my latest reading list!</p>
+        {% endif %}
     </main>
 
     <footer>

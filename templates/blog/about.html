@@ -9,15 +9,28 @@
     </header>
 
     <main>
-        <!-- <img src="{% static 'images/about-photo.jpg' %}" alt="Xurshid working" class="page-photo"> -->
-        
-        <p>Men Xurshidbek, dasturiy ta'minot muhandisiman va texnologiya sohasida faoliyat yuritaman.</p>
-        
-        <p>Backend dasturlash, ma'lumotlar tahlili va veb-dasturlash sohasida tajribaga egaman. Asosan Python, Django, PostgreSQL va boshqa zamonaviy texnologiyalar bilan ishlayman.</p>
-        
-        <p>Bu blogda dasturlash, texnologiyalar va shaxsiy rivojlanish mavzularida o'z tajribalarimi baham ko'raman. Har bir maqola o'rgangan narsalarimni yoki qiziqarli loyihalarimni boshqalar bilan ulashish maqsadida yoziladi.</p>
-        
-        <p>Agar savol yoki takliflaringiz bo'lsa, <a href="https://t.me/xurshidbro_blog">Telegram kanalim</a> orqali bog'lanishingiz mumkin.</p>
+        {% for section in sections %}
+            {% if section.image %}
+                <img src="{{ section.image.url }}" alt="{{ section.title }}" class="page-photo">
+            {% endif %}
+            
+            {% if section.title != "About" %}
+                <h2>{{ section.title }}</h2>
+            {% endif %}
+            
+            <div class="content-section">
+                {{ section.content|linebreaks }}
+            </div>
+        {% empty %}
+            <!-- Fallback content if no sections are added in admin -->
+            <p>Men Xurshidbek, dasturiy ta'minot muhandisiman va texnologiya sohasida faoliyat yuritaman.</p>
+            
+            <p>Backend dasturlash, ma'lumotlar tahlili va veb-dasturlash sohasida tajribaga egaman. Asosan Python, Django, PostgreSQL va boshqa zamonaviy texnologiyalar bilan ishlayman.</p>
+            
+            <p>Bu blogda dasturlash, texnologiyalar va shaxsiy rivojlanish mavzularida o'z tajribalarimi baham ko'raman. Har bir maqola o'rgangan narsalarimni yoki qiziqarli loyihalarimni boshqalar bilan ulashish maqsadida yoziladi.</p>
+            
+            <p>Agar savol yoki takliflaringiz bo'lsa, <a href="https://t.me/xurshidbro_blog">Telegram kanalim</a> orqali bog'lanishingiz mumkin.</p>
+        {% endfor %}
     </main>
 
     <footer>

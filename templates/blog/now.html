@@ -6,7 +6,7 @@
 {% block content %}
     <header>
         <h1>Now</h1>
-        <p class="meta">January 2025</p>
+        <p class="meta">{{ "now"|date:"F Y" }}</p>
     </header>
 
     <main>
@@ -14,27 +14,64 @@
         
         <p>Hozirda nima bilan shug'ullanayotganim haqida.</p>
         
-        <h2>Learning</h2>
-        
-        <p>Django va Python ekotizimini chuqurroq o'rganmoqdaman. Ayniqsa database optimization va caching strategiyalariga e'tibor bermoqdaman.</p>
-        
-        <p>System design kontseptsiyalarini o'rganib, katta tizimlarni qanday loyihalash kerakligini tushunishga harakat qilmoqdaman.</p>
-        
-        <h2>Building</h2>
-        
-        <p>Bu personal blogni takomillashtirmoqdaman. Maqsad - sodda, tez va content-focused blog yaratish.</p>
-        
-        <p>Bir nechta kichik API loyihalar ustida ishlamoqdaman, ularni GitHub'da ochiq manbali qilish rejalari bor.</p>
-        
-        <h2>Reading</h2>
-        
-        <p>"Clean Code" kitobini o'qib chiqmoqdaman. Har hafta bir necha bobini o'rganib, amaliyotda qo'llashga harakat qilaman.</p>
-        
-        <h2>Goals</h2>
-        
-        <p>Keyingi oy ichida kamida 3 ta texnik maqola yozishni rejalashtirmoqdaman. PostgreSQL performance tuning va Django best practices mavzularida.</p>
-        
-        <p>Open source loyihalarga contribute qilishni boshlamoqchiman. Birinchi qadam sifatida Django ecosystem'dagi kichik bug fix'lar.</p>
+        {% if active_activities %}
+            {% regroup active_activities by category as activities_by_category %}
+            
+            {% for category_group in activities_by_category %}
+                <h2>{{ category_group.grouper.name }}</h2>
+                
+                {% for activity in category_group.list %}
+                    <div class="activity-section">
+                        {% if activity.image %}
+                            <img src="{{ activity.image.url }}" alt="{{ activity.title }}" class="activity-photo">
+                        {% endif %}
+                        
+                        <h3>{{ activity.title }}</h3>
+                        
+                        <div class="activity-description">
+                            {{ activity.description|linebreaks }}
+                        </div>
+                        
+                        {% if activity.progress > 0 %}
+                            <div class="progress-info">
+                                <p><strong>Progress:</strong> {{ activity.progress }}%</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-progress="{{ activity.progress }}"></div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        
+                        {% if activity.start_date %}
+                            <p class="activity-meta">
+                                <strong>Started:</strong> {{ activity.start_date|date:"F Y" }}
+                                {% if activity.end_date %}
+                                    - <strong>Target completion:</strong> {{ activity.end_date|date:"F Y" }}
+                                {% endif %}
+                            </p>
+                        {% endif %}
+                        
+                        {% if activity.url %}
+                            <p><a href="{{ activity.url }}" target="_blank">Learn more</a></p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% else %}
+            <!-- Fallback content if no activities are added -->
+            <h2>Learning</h2>
+            <p>Django va Python ekotizimini chuqurroq o'rganmoqdaman. Ayniqsa database optimization va caching strategiyalariga e'tibor bermoqdaman.</p>
+            
+            <h2>Building</h2>
+            <p>Bu personal blogni takomillashtirmoqdaman. Maqsad - sodda, tez va content-focused blog yaratish.</p>
+            
+            <h2>Reading</h2>
+            <p>"Clean Code" kitobini o'qib chiqmoqdaman. Har hafta bir necha bobini o'rganib, amaliyotda qo'llashga harakat qilaman.</p>
+            
+            <h2>Goals</h2>
+            <p>Keyingi oy ichida kamida 3 ta texnik maqola yozishni rejalashtirmoqdaman.</p>
+            
+            <p><em>To see dynamic content here, add activities in the admin panel under "Hozirgi Faoliyatlar".</em></p>
+        {% endif %}
     </main>
 
     <footer>
@@ -42,4 +79,17 @@
             <p><a href="{% url 'blog:home' %}">Back to Home</a></p>
         </div>
     </footer>
+
+    <script>
+        // Set progress bar widths using JavaScript to avoid CSS linting issues
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressFills = document.querySelectorAll('.progress-fill');
+            progressFills.forEach(function(fill) {
+                const progress = fill.getAttribute('data-progress');
+                if (progress) {
+                    fill.style.width = progress + '%';
+                }
+            });
+        });
+    </script>
 {% endblock %} 
