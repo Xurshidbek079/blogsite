@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}Books - Xurshid's Blog{% endblock %}
 
@@ -9,127 +8,13 @@
     </header>
 
     <main>
-        {% if currently_reading %}
-            <h2>Currently Reading</h2>
-            {% for book in currently_reading %}
-                <div class="book-section">
-                    {% if book.cover_image %}
-                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-cover">
-                    {% endif %}
-                    
-                    <div class="book-content">
-                        <h3>{{ book.title }}</h3>
-                        <p><strong>Author:</strong> {{ book.author }}</p>
-                        
-                        {% if book.pages %}
-                            <p><strong>Pages:</strong> {{ book.pages }}</p>
-                        {% endif %}
-                        
-                        {% if book.start_date %}
-                            <p><strong>Started:</strong> {{ book.start_date|date:"F d, Y" }}</p>
-                        {% endif %}
-                        
-                        {% if book.review %}
-                            <div class="book-review">
-                                <p><strong>Notes so far:</strong></p>
-                                {{ book.review|linebreaks }}
-                            </div>
-                        {% endif %}
-                        
-                        {% if book.buy_url %}
-                            <p><a href="{{ book.buy_url }}" target="_blank">Get this book</a></p>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endfor %}
-        {% endif %}
-
-        {% if completed_books %}
-            <h2>Completed Books</h2>
-            {% for book in completed_books %}
-                <div class="book-section">
-                    {% if book.cover_image %}
-                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-cover">
-                    {% endif %}
-                    
-                    <div class="book-content">
-                        <h3>{{ book.title }}</h3>
-                        <p><strong>Author:</strong> {{ book.author }}</p>
-                        
-                        {% if book.rating %}
-                            <p><strong>Rating:</strong> 
-                                {% for i in "12345" %}
-                                    {% if forloop.counter <= book.rating %}★{% else %}☆{% endif %}
-                                {% endfor %}
-                                ({{ book.rating }}/5)
-                            </p>
-                        {% endif %}
-                        
-                        {% if book.finish_date %}
-                            <p><strong>Completed:</strong> {{ book.finish_date|date:"F d, Y" }}</p>
-                        {% endif %}
-                        
-                        {% if book.review %}
-                            <div class="book-review">
-                                <p><strong>Review:</strong></p>
-                                {{ book.review|linebreaks }}
-                            </div>
-                        {% endif %}
-                        
-                        {% if book.key_takeaways %}
-                            <div class="book-takeaways">
-                                <p><strong>Key Takeaways:</strong></p>
-                                {{ book.key_takeaways|linebreaks }}
-                            </div>
-                        {% endif %}
-                        
-                        {% if book.is_recommended %}
-                            <p class="recommendation"><strong>⭐ Recommended!</strong></p>
-                        {% endif %}
-                        
-                        {% if book.buy_url %}
-                            <p><a href="{{ book.buy_url }}" target="_blank">Get this book</a></p>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endfor %}
-        {% endif %}
-
-        {% if want_to_read %}
-            <h2>Want to Read</h2>
-            {% for book in want_to_read %}
-                <div class="book-section">
-                    {% if book.cover_image %}
-                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-cover">
-                    {% endif %}
-                    
-                    <div class="book-content">
-                        <h3>{{ book.title }}</h3>
-                        <p><strong>Author:</strong> {{ book.author }}</p>
-                        
-                        {% if book.pages %}
-                            <p><strong>Pages:</strong> {{ book.pages }}</p>
-                        {% endif %}
-                        
-                        {% if book.review %}
-                            <div class="book-preview">
-                                <p><strong>Why I want to read this:</strong></p>
-                                {{ book.review|linebreaks }}
-                            </div>
-                        {% endif %}
-                        
-                        {% if book.buy_url %}
-                            <p><a href="{{ book.buy_url }}" target="_blank">Get this book</a></p>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endfor %}
-        {% endif %}
-
-        {% if not currently_reading and not completed_books and not want_to_read %}
-            <!-- Fallback content -->
-            <p>No books have been added yet. I'm always reading something interesting - check back soon for my latest reading list!</p>
-        {% endif %}
+        <p>Here are my reading lists organized by status:</p>
+        
+        <div class="reading-lists">
+            <p><a href="{% url 'blog:books_completed' %}">books/rd</a> - Books I've finished reading</p>
+            <p><a href="{% url 'blog:books_currently_reading' %}">books/rng</a> - Books I'm reading right now</p>
+            <p><a href="{% url 'blog:books_want_to_read' %}">books/wrd</a> - Books on my reading list</p>
+        </div>
     </main>
 
     <footer>

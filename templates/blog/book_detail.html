@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ book.title }} - Xurshid's Blog{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>{{ book.title }}</h1>
+        <p><strong>Author:</strong> {{ book.author }}</p>
+    </header>
+
+    <main>
+        {% if book.cover_image %}
+            <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-cover">
+        {% endif %}
+        
+        {% if book.rating %}
+            <p><strong>Rating:</strong> 
+                {% for i in "12345" %}
+                    {% if forloop.counter <= book.rating %}★{% else %}☆{% endif %}
+                {% endfor %}
+                ({{ book.rating }}/5)
+            </p>
+        {% endif %}
+        
+        {% if book.finish_date %}
+            <p><strong>Completed:</strong> {{ book.finish_date|date:"F d, Y" }}</p>
+        {% elif book.start_date %}
+            <p><strong>Started:</strong> {{ book.start_date|date:"F d, Y" }}</p>
+        {% endif %}
+        
+        {% if book.pages %}
+            <p><strong>Pages:</strong> {{ book.pages }}</p>
+        {% endif %}
+        
+        {% if book.notes %}
+            <div class="book-notes">
+                <h3>Notes</h3>
+                {{ book.notes|linebreaks }}
+            </div>
+        {% endif %}
+    </main>
+
+    <footer>
+        <div class="back-link">
+            {% if book.status == 'completed' %}
+                <p><a href="{% url 'blog:books_completed' %}">Back to Read Books</a></p>
+            {% elif book.status == 'currently_reading' %}
+                <p><a href="{% url 'blog:books_currently_reading' %}">Back to Currently Reading</a></p>
+            {% elif book.status == 'want_to_read' %}
+                <p><a href="{% url 'blog:books_want_to_read' %}">Back to Want to Read</a></p>
+            {% else %}
+                <p><a href="{% url 'blog:books' %}">Back to Books</a></p>
+            {% endif %}
+        </div>
+    </footer>
+{% endblock %} 

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Currently Reading - Xurshid's Blog{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>Currently Reading</h1>
+    </header>
+
+    <main>
+        {% if currently_reading %}
+            {% for book in currently_reading %}
+                <div class="book-section">
+                    {% if book.cover_image %}
+                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-cover">
+                    {% endif %}
+                    
+                    <div class="book-content">
+                        <div class="book-info">
+                            <h3>{{ book.title }}</h3>
+                            <p><strong>Author:</strong> {{ book.author }}</p>
+                            
+                            {% if book.pages %}
+                                <p><strong>Pages:</strong> {{ book.pages }}</p>
+                            {% endif %}
+                            
+                            {% if book.start_date %}
+                                <p><strong>Started:</strong> {{ book.start_date|date:"F d, Y" }}</p>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="book-actions">
+                            {% if book.notes %}
+                                <p><a href="{% url 'blog:book_detail' book.slug %}">Full Notes</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Not currently reading any books.</p>
+        {% endif %}
+    </main>
+
+    <footer>
+        <div class="back-link">
+            <p><a href="{% url 'blog:books' %}">Back to Books</a></p>
+        </div>
+    </footer>
+{% endblock %} 

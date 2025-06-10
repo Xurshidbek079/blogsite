@@ -48,21 +48,50 @@ class ProjectsPageView(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['featured_projects'] = Project.objects.filter(is_featured=True)
-        context['all_projects'] = Project.objects.all()
+        context['projects'] = Project.objects.all()
         return context
 
 
 class BooksPageView(TemplateView):
     template_name = 'blog/books.html'
+
+
+class BooksCompletedView(TemplateView):
+    template_name = 'blog/books_completed.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['completed_books'] = Book.objects.filter(status='completed')
+        return context
+
+
+class BooksCurrentlyReadingView(TemplateView):
+    template_name = 'blog/books_currently_reading.html'
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['currently_reading'] = Book.objects.filter(status='currently_reading')
-        context['completed_books'] = Book.objects.filter(status='completed')
-        context['want_to_read'] = Book.objects.filter(status='want_to_read')
-        context['recommended_books'] = Book.objects.filter(is_recommended=True)
         return context
+
+
+class BooksWantToReadView(TemplateView):
+    template_name = 'blog/books_want_to_read.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['want_to_read'] = Book.objects.filter(status='want_to_read')
+        return context
+
+
+class BookDetailView(DetailView):
+    model = Book
+    template_name = 'blog/book_detail.html'
+    context_object_name = 'book'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+    
+    def get_queryset(self):
+        return Book.objects.all()
 
 
 class NowPageView(TemplateView):

@@ -32,11 +32,11 @@ class ProjectCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'status', 'is_featured', 'order', 'created_at']
-    list_filter = ['category', 'status', 'is_featured', 'created_at']
+    list_display = ['title', 'category', 'status', 'order', 'created_at']
+    list_filter = ['category', 'status', 'created_at']
     search_fields = ['title', 'description', 'technologies']
     prepopulated_fields = {'slug': ('title',)}
-    list_editable = ['order', 'is_featured', 'status']
+    list_editable = ['order', 'status']
     date_hierarchy = 'created_at'
     fieldsets = (
         ('Basic Information', {
@@ -49,30 +49,31 @@ class ProjectAdmin(admin.ModelAdmin):
             'fields': ('technologies', 'status', 'start_date', 'end_date')
         }),
         ('Display Settings', {
-            'fields': ('order', 'is_featured')
+            'fields': ('order',)
         }),
     )
 
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'status', 'rating', 'is_recommended', 'order']
-    list_filter = ['status', 'rating', 'is_recommended', 'created_at']
-    search_fields = ['title', 'author', 'review']
-    list_editable = ['order', 'is_recommended', 'rating']
+    list_display = ['title', 'author', 'status', 'rating', 'order']
+    list_filter = ['status', 'rating', 'created_at']
+    search_fields = ['title', 'author', 'notes']
+    list_editable = ['order', 'rating']
+    readonly_fields = ['slug']
     date_hierarchy = 'created_at'
     fieldsets = (
         ('Book Information', {
-            'fields': ('title', 'author', 'cover_image', 'pages', 'isbn')
+            'fields': ('title', 'slug', 'author', 'cover_image', 'pages', 'isbn')
         }),
         ('Reading Status', {
             'fields': ('status', 'rating', 'start_date', 'finish_date')
         }),
-        ('Review and Takeaways', {
-            'fields': ('review', 'key_takeaways')
+        ('Notes', {
+            'fields': ('notes',)
         }),
         ('Additional', {
-            'fields': ('buy_url', 'order', 'is_recommended')
+            'fields': ('buy_url', 'order')
         }),
     )
 

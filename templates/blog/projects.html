@@ -9,9 +9,8 @@
     </header>
 
     <main>
-        {% if featured_projects %}
-            <h2>Featured Projects</h2>
-            {% for project in featured_projects %}
+        {% if projects %}
+            {% for project in projects %}
                 <div class="project-section">
                     <h3>{{ project.title }}</h3>
                     
@@ -54,48 +53,7 @@
                     {% endif %}
                 </div>
             {% endfor %}
-        {% endif %}
-
-        {% if all_projects %}
-            <h2>All Projects</h2>
-            {% for project in all_projects %}
-                {% if not project.is_featured %}
-                    <div class="project-section">
-                        <h3>{{ project.title }}</h3>
-                        
-                        {% if project.image %}
-                            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-photo">
-                        {% endif %}
-                        
-                        <p><strong>Status:</strong> {{ project.get_status_display }}</p>
-                        
-                        {% if project.technologies %}
-                            <p><strong>Technologies:</strong> 
-                                {% for tech in project.get_technologies_list %}
-                                    <span class="tech-tag">{{ tech }}</span>{% if not forloop.last %}, {% endif %}
-                                {% endfor %}
-                            </p>
-                        {% endif %}
-                        
-                        <div class="project-description">
-                            {{ project.description|linebreaks }}
-                        </div>
-                        
-                        <div class="project-links">
-                            {% if project.demo_url %}
-                                <p><a href="{{ project.demo_url }}" target="_blank">View Demo</a></p>
-                            {% endif %}
-                            {% if project.github_url %}
-                                <p><a href="{{ project.github_url }}" target="_blank">View Code</a></p>
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-
-        {% if not all_projects %}
-            <!-- Fallback content -->
+        {% else %}
             <p>No projects have been added yet. Check back soon for updates on my latest work!</p>
         {% endif %}
     </main>

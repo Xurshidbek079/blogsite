@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.text import slugify
 from datetime import date
 
 
@@ -74,7 +75,6 @@ class Project(models.Model):
     start_date = models.DateField('Start date', blank=True, null=True)
     end_date = models.DateField('End date', blank=True, null=True)
     order = models.PositiveIntegerField('Order', default=0)
-    is_featured = models.BooleanField('Featured project', default=False)
     created_at = models.DateTimeField('Created at', auto_now_add=True)
 
     class Meta:
@@ -107,19 +107,18 @@ class Book(models.Model):
     ]
 
     title = models.CharField('Book title', max_length=200)
+    slug = models.SlugField('URL slug', unique=True)
     author = models.CharField('Author', max_length=200)
     cover_image = models.ImageField('Cover image', upload_to='images/books/', blank=True, null=True)
     status = models.CharField('Status', max_length=20, choices=STATUS_CHOICES, default='want_to_read')
     rating = models.IntegerField('Rating', choices=RATING_CHOICES, blank=True, null=True)
-    review = models.TextField('Review', blank=True)
-    key_takeaways = models.TextField('Key takeaways', blank=True)
+    notes = models.TextField('Notes', blank=True)
     start_date = models.DateField('Start date', blank=True, null=True)
     finish_date = models.DateField('Finish date', blank=True, null=True)
     pages = models.PositiveIntegerField('Page count', blank=True, null=True)
     isbn = models.CharField('ISBN', max_length=20, blank=True)
     buy_url = models.URLField('Purchase URL', blank=True, null=True)
     order = models.PositiveIntegerField('Order', default=0)
-    is_recommended = models.BooleanField('Recommended', default=False)
     created_at = models.DateTimeField('Created at', auto_now_add=True)
 
     class Meta:
@@ -129,6 +128,20 @@ class Book(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.author}"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+            # Handle duplicate slugs
+            original_slug = self.slug
+            counter = 1
+            while Book.objects.filter(slug=self.slug).exists():
+                self.slug = f"{original_slug}-{counter}"
+                counter += 1
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('blog:book_detail', kwargs={'slug': self.slug})
 
 
 # Now Page Models

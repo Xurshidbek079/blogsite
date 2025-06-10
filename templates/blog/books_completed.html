@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Read Books - Xurshid's Blog{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>Read Books</h1>
+    </header>
+
+    <main>
+        {% if completed_books %}
+            {% for book in completed_books %}
+                <div class="book-section">
+                    {% if book.cover_image %}
+                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-cover">
+                    {% endif %}
+                    
+                    <div class="book-content">
+                        <div class="book-info">
+                            <h3>{{ book.title }}</h3>
+                            <p><strong>Author:</strong> {{ book.author }}</p>
+                            
+                            {% if book.rating %}
+                                <p><strong>Rating:</strong> 
+                                    {% for i in "12345" %}
+                                        {% if forloop.counter <= book.rating %}★{% else %}☆{% endif %}
+                                    {% endfor %}
+                                    ({{ book.rating }}/5)
+                                </p>
+                            {% endif %}
+                            
+                            {% if book.finish_date %}
+                                <p><strong>Completed:</strong> {{ book.finish_date|date:"F d, Y" }}</p>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="book-actions">
+                            {% if book.notes %}
+                                <p><a href="{% url 'blog:book_detail' book.slug %}">Notes</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No completed books yet.</p>
+        {% endif %}
+    </main>
+
+    <footer>
+        <div class="back-link">
+            <p><a href="{% url 'blog:books' %}">Back to Books</a></p>
+        </div>
+    </footer>
+{% endblock %} 

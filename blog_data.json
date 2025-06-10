@@ -1,0 +1,8 @@
+[
+{
+  "model": "blog.blogpost",
+  "pk": 1,
+  "fields": {
+    "title": "Hurmattalablik",
+    "slug": "Hurmattalablik",
+    "content": 
