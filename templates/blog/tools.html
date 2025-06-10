@@ -1,100 +1,27 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}Tools - Xurshid's Blog{% endblock %}
 
 {% block content %}
     <header>
         <h1>Tools</h1>
+        {% if last_updated %}
+            <p class="meta">Last updated: {{ last_updated|date:"F d, Y" }}</p>
+        {% endif %}
     </header>
 
     <main>
-        {% if tools_by_category %}
-            <p>The tools I use for development and my reasons for choosing them.</p>
-            
-            {% for category_group in tools_by_category %}
-                <h2>{{ category_group.grouper.name }}</h2>
-                
-                {% for tool in category_group.list %}
-                    <div class="tool-section">
-                        {% if tool.logo %}
-                            <img src="{{ tool.logo.url }}" alt="{{ tool.name }} logo" class="tool-logo">
-                        {% endif %}
-                        
-                        <h3>{{ tool.name }}</h3>
-                        
-                        {% if tool.proficiency %}
-                            <p><strong>Proficiency:</strong> {{ tool.get_proficiency_display }}</p>
-                        {% endif %}
-                        
-                        {% if tool.years_experience %}
-                            <p><strong>Experience:</strong> {{ tool.years_experience }} years</p>
-                        {% endif %}
-                        
-                        <div class="tool-description">
-                            {{ tool.description|linebreaks }}
-                        </div>
-                        
-                        {% if tool.is_favorite %}
-                            <p class="favorite-tool"><strong>⭐ Favorite Tool</strong></p>
-                        {% endif %}
-                        
-                        {% if not tool.is_currently_using %}
-                            <p class="deprecated-tool"><em>No longer using</em></p>
-                        {% endif %}
-                        
-                        {% if tool.website_url %}
-                            <p><a href="{{ tool.website_url }}" target="_blank">Visit Website</a></p>
-                        {% endif %}
-                        
-                        {% if tool.notes %}
-                            <div class="tool-notes">
-                                <p><strong>Notes:</strong></p>
-                                {{ tool.notes|linebreaks }}
-                            </div>
-                        {% endif %}
+        {% if tool_sections %}
+            {% for section in tool_sections %}
+                <div class="tool-section">
+                    <h2>{{ section.title }}</h2>
+                    <div class="tool-content">
+                        {{ section.content|safe|linebreaksbr }}
                     </div>
-                {% endfor %}
+                </div>
             {% endfor %}
         {% else %}
-            <!-- Fallback content -->
-            <p>The tools I use for development and my reasons for choosing them.</p>
-            
-            <h2>Development</h2>
-            
-            <p><strong>VS Code</strong> - Primary code editor. Excellent Python extension, Git integration, and debugging capabilities.</p>
-            
-            <p><strong>PyCharm</strong> - For large Django projects. Intelligent code completion and refactoring tools are amazing.</p>
-            
-            <p><strong>Git</strong> - For version control. Integration with GitHub and GitLab.</p>
-            
-            <h2>Backend</h2>
-            
-            <p><strong>Python</strong> - Primary programming language. With Django and FastAPI frameworks.</p>
-            
-            <p><strong>PostgreSQL</strong> - Database. For reliability and performance.</p>
-            
-            <p><strong>Redis</strong> - For caching and session storage.</p>
-            
-            <h2>Deployment</h2>
-            
-            <p><strong>Docker</strong> - For containerization. Local development and production consistency.</p>
-            
-            <p><strong>DigitalOcean</strong> - VPS hosting. Simple and reliable.</p>
-            
-            <p><strong>Gunicorn</strong> - Python WSGI HTTP server. For production deployment.</p>
-            
-            <h2>Productivity</h2>
-            
-            <p><strong>Notion</strong> - Note-taking and project planning. As a knowledge base.</p>
-            
-            <p><strong>Postman</strong> - For API testing and documentation.</p>
-            
-            <p><strong>Termius</strong> - SSH client. Convenient for server management.</p>
-            
-            <p>This list changes over time. It's important to try new tools and choose the most effective ones.</p>
-            
-            <p><em>To see dynamic content here, add tools in the admin panel under "Tools".</em></p>
+            <p>No tools have been added yet.</p>
         {% endif %}
     </main>
 

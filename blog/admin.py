@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (
     BlogPost, AboutSection, ProjectCategory, Project, 
-    Book, NowCategory, NowActivity, ToolCategory, Tool
+    Book, NowCategory, NowActivity, ToolSection
 )
 
 
@@ -108,34 +108,17 @@ class NowActivityAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(ToolCategory)
-class ToolCategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'icon', 'order']
-    list_editable = ['order', 'icon']
+@admin.register(ToolSection)
+class ToolSectionAdmin(admin.ModelAdmin):
+    list_display = ['title', 'last_updated', 'order']
+    list_editable = ['order']
     ordering = ['order']
-
-
-@admin.register(Tool)
-class ToolAdmin(admin.ModelAdmin):
-    list_display = ['name', 'category', 'proficiency', 'years_experience', 'is_favorite', 'is_currently_using', 'order']
-    list_filter = ['category', 'proficiency', 'is_favorite', 'is_currently_using']
-    search_fields = ['name', 'description', 'notes']
-    list_editable = ['order', 'is_favorite', 'is_currently_using']
     fieldsets = (
-        ('Basic Information', {
-            'fields': ('name', 'category', 'description')
+        ('Section Information', {
+            'fields': ('title', 'content')
         }),
-        ('Media and Link', {
-            'fields': ('logo', 'website_url')
-        }),
-        ('Experience', {
-            'fields': ('proficiency', 'years_experience')
-        }),
-        ('Status', {
-            'fields': ('is_favorite', 'is_currently_using')
-        }),
-        ('Additional', {
-            'fields': ('notes', 'order')
+        ('Settings', {
+            'fields': ('order',)
         }),
     )
 

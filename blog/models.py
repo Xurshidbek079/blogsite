@@ -183,46 +183,17 @@ class NowActivity(models.Model):
 
 
 # Tools Models
-class ToolCategory(models.Model):
-    name = models.CharField('Name', max_length=100)
-    description = models.TextField('Description', blank=True)
-    icon = models.CharField('Icon', max_length=50, blank=True)
-    order = models.PositiveIntegerField('Order', default=0)
-
-    class Meta:
-        ordering = ['order']
-        verbose_name = 'Tool Category'
-        verbose_name_plural = 'Tool Categories'
-
-    def __str__(self):
-        return self.name
-
-
-class Tool(models.Model):
-    PROFICIENCY_CHOICES = [
-        ('beginner', 'Beginner'),
-        ('intermediate', 'Intermediate'),
-        ('advanced', 'Advanced'),
-        ('expert', 'Expert'),
-    ]
-
-    name = models.CharField('Name', max_length=100)
-    category = models.ForeignKey(ToolCategory, on_delete=models.CASCADE, verbose_name='Category')
-    description = models.TextField('Description')
-    logo = models.ImageField('Logo', upload_to='images/tools/logos/', blank=True, null=True)
-    website_url = models.URLField('Website URL', blank=True, null=True)
-    proficiency = models.CharField('Proficiency level', max_length=20, choices=PROFICIENCY_CHOICES)
-    years_experience = models.DecimalField('Years of experience', max_digits=4, decimal_places=1, blank=True, null=True)
-    is_favorite = models.BooleanField('Favorite', default=False)
-    is_currently_using = models.BooleanField('Currently using', default=True)
-    notes = models.TextField('Notes', blank=True)
+class ToolSection(models.Model):
+    title = models.CharField('Section Title', max_length=100)
+    content = models.TextField('Content', help_text='Each tool on a new line. Format: <a href="url">Tool Name</a> - description')
+    last_updated = models.DateField('Last Updated', auto_now=True)
     order = models.PositiveIntegerField('Order', default=0)
     created_at = models.DateTimeField('Created at', auto_now_add=True)
 
     class Meta:
-        ordering = ['category__order', 'order', 'name']
-        verbose_name = 'Tool'
-        verbose_name_plural = 'Tools'
+        ordering = ['order', 'title']
+        verbose_name = 'Tool Section'
+        verbose_name_plural = 'Tool Sections'
 
     def __str__(self):
-        return f"{self.name} ({self.category.name})" 
+        return self.title 
