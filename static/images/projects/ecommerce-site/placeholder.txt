@@ -1,5 +1,5 @@
 E-commerce Site Project Images
-
+ 
 Place screenshots and images related to your e-commerce project here:
 - homepage-screenshot.jpg
 - product-page.jpg
